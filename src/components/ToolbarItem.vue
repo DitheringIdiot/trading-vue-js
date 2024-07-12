@@ -17,7 +17,7 @@
             @mouseleave="expmouseleave">
             ᐳ
         </div>
-        <item-list :config="config" :items="data.items"
+        <ItemList :config="config" :items="data.items"
             v-if="show_exp_list" :colors="colors" :dc="dc"
             @close-list="close_list"
             @item-selected="emit_selected_sub"/>

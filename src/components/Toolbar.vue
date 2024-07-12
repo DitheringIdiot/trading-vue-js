@@ -2,17 +2,18 @@
 <template>
     <div class="trading-vue-toolbar" :style="styles"
         :key="tool_count">
-        <toolbar-item v-for="(tool, i) in groups"
-            v-if="tool.icon && !tool.hidden"
-            @item-selected="selected"
-            :key="i"
-            :data="tool"
-            :subs="sub_map"
-            :dc="data"
-            :config="config"
-            :colors="colors"
-            :selected="is_selected(tool)">
-        </toolbar-item>
+        <template v-for="(tool, i) in groups" :key="i">
+            <ToolbarItem
+                v-if="tool.icon && !tool.hidden"
+                @item-selected="selected"
+                :data="tool"
+                :subs="sub_map"
+                :dc="data"
+                :config="config"
+                :colors="colors"
+                :selected="is_selected(tool)">
+            </ToolbarItem>
+        </template>
     </div>
 </template>
 
