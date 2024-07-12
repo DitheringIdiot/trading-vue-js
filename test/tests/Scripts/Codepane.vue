@@ -4,25 +4,33 @@
         borderColor: colors.border,
         width: width + 'px'
     }">
-    <codemirror v-model="code" :options="options"
-       @input="on_change" ref="cm"/>
+    <Codemirror 
+        v-model="code" 
+        :options="options"
+        @input="on_change" ref="cm"
+        :extensions="extensions"
+    />
 </div>
 </template>
 
 <script>
 
-import { codemirror } from 'vue-codemirror'
-import 'codemirror/mode/javascript/javascript'
-import 'codemirror/mode/htmlmixed/htmlmixed'
-import 'codemirror/lib/codemirror.css'
-import 'codemirror/theme/dracula.css'
-import 'codemirror/addon/scroll/simplescrollbars.js'
-import 'codemirror/addon/scroll/simplescrollbars.css'
+import { Codemirror } from 'vue-codemirror'
+import { javascript } from '@codemirror/lang-javascript'
+import { html } from '@codemirror/lang-html'
+import { oneDark } from '@codemirror/theme-one-dark'
+
+// import 'codemirror/mode/javascript/javascript'
+// import 'codemirror/mode/htmlmixed/htmlmixed'
+// import 'codemirror/lib/codemirror.css'
+// import 'codemirror/theme/dracula.css'
+// import 'codemirror/addon/scroll/simplescrollbars.js'
+// import 'codemirror/addon/scroll/simplescrollbars.css'
 
 export default {
     name: 'Codepane',
     components: {
-        codemirror
+        Codemirror
     },
     props: ['colors', 'height', 'width', 'bundle', 'src'],
     mounted() {
@@ -92,6 +100,11 @@ export default {
     data() {
         return {
             code: this.$props.src,
+            extensions: [
+                javascript(), 
+                html(),
+                oneDark
+            ],
             options: {
                 mode: 'text/javascript',
                 tabSize: 4,
