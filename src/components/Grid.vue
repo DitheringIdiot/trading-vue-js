@@ -1,5 +1,7 @@
 <script>
 // Sets up all layers/overlays for the grid with 'grid_id'
+import { h } from 'vue'
+
 
 import Grid from './js/grid.js'
 import Canvas from '../mixins/canvas.js'
@@ -67,7 +69,7 @@ export default {
         this.$nextTick(() => this.redraw())
 
     },
-    render(h) {
+    render() {
         const id = this.$props.grid_id
         const layout = this.$props.layout.grids[id]
         return this.create_canvas(h, `grid-${id}`, {

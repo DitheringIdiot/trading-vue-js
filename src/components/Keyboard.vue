@@ -4,6 +4,8 @@
 
 <script>
 
+import { h } from 'vue'
+
 export default {
     name: 'Keyboard',
     created: function () {
@@ -17,7 +19,7 @@ export default {
         window.removeEventListener('keyup', this.keyup)
         window.removeEventListener('keypress', this.keypress)
     },
-    render(h) { return h() },
+    render() { return h() },
     methods: {
         keydown (event) {
             for (var id in this._listeners) {

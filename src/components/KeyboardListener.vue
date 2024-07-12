@@ -4,9 +4,12 @@
 
 <script>
 
+import { h } from 'vue'
+
+
 export default {
     name: 'KeyboardListener',
-    render(h) { return h() },
+    render() { return h() },
     created: function () {
         this.$emit('register-kb-listener', {
             id: this._uid,

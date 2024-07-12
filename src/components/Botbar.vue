@@ -1,5 +1,6 @@
 <script>
 // The bottom bar (yep, that thing with a bunch of dates)
+import { h } from 'vue'
 
 import Botbar from './js/botbar.js'
 import Canvas from '../mixins/canvas.js'
@@ -18,7 +19,7 @@ export default {
         this.setup()
         this.redraw()
     },
-    render(h) {
+    render() {
         const sett = this.$props.layout.botbar
         return this.create_canvas(h, 'botbar', {
             position: {
