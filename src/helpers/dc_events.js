@@ -115,7 +115,10 @@ export default class DCEvents {
                     Utils.delayed_exec(n.p)) {
                     delta[id] = n.v
                     changed = true
-                    this.tv.$set(n.p, 'loading', true)
+
+                    // Vue 2 | this.tv.$set(n.p, 'loading', true)
+                    // Vue 3 | n.p.loading = true
+                    n.p.loading = true
                 }
             }
         }
@@ -149,7 +152,9 @@ export default class DCEvents {
              preset[tool.type] = tool
              delete tool.type
         }
-        this.tv.$set(this.data, 'tools', [])
+        // Vue 3 | this.tv.$set(this.data, 'tools', [])
+        // Vue 2 | this.data.tools = []
+        this.data.tools = []
         let list = [{
             type: 'Cursor', icon: Icons['cursor.png']
         }]
@@ -170,8 +175,11 @@ export default class DCEvents {
                 list.push(mp)
             }
         }
-        this.tv.$set(this.data, 'tools', list)
-        this.tv.$set(this.data, 'tool', 'Cursor')
+        // Vue 2 |
+        // this.tv.$set(this.data, 'tools', list)
+        // this.tv.$set(this.data, 'tool', 'Cursor')
+        this.tv.tools = list
+        this.tv.tool = 'Cursor'
     }
 
     exec_script(args) {
@@ -212,7 +220,8 @@ export default class DCEvents {
                 }
             }
             s.$props = Object.keys(args[0].src.props || {})
-            this.tv.$set(obj, 'loading', true)
+            // Vue 2 | this.tv.$set(obj, 'loading', true)
+            obj.loading = true
             let tf = this.tv.$refs.chart.interval_ms ||
                      this.data.chart.tf
             let range = this.tv.getRange()
@@ -266,7 +275,8 @@ export default class DCEvents {
                 if (typeof obj[k] === 'object') {
                     this.merge(`${upd.uuid}.${k}`, upd.fields[k])
                 } else {
-                    this.tv.$set(obj, k, upd.fields[k])
+                    // Vue 2 | this.tv.$set(obj, k, upd.fields[k])
+                    obj[k] = upd.fields[k]
                 }
             }
         }
@@ -320,7 +330,8 @@ export default class DCEvents {
            !this.data.drawingMode) {
             // Prevent from "null" tools (tool created with HODL)
             if (args[1].type !== 'tap') {
-                this.tv.$set(this.data, 'drawingMode', true)
+                // Vue 2 | this.tv.$set(this.data, 'drawingMode', true)
+                this.data['drawingMode'] = true
                 this.build_tool(args[0])
             } else {
                 this.tv.showTheTip(
@@ -338,8 +349,12 @@ export default class DCEvents {
     }
 
     drawing_mode_off() {
-        this.tv.$set(this.data, 'drawingMode', false)
-        this.tv.$set(this.data, 'tool', 'Cursor')
+        // Vue 2 |
+        // this.tv.$set(this.data, 'drawingMode', false)
+        // this.tv.$set(this.data, 'tool', 'Cursor')
+
+        this.data.drawingMode = false
+        this.data.tool = 'Cursor'
     }
 
     // Place a new tool
@@ -368,7 +383,10 @@ export default class DCEvents {
 
         sett.$uuid = `${id}-${Utils.now()}`
 
-        this.tv.$set(this.data, 'selected', sett.$uuid)
+        // Vue 2 | this.tv.$set(this.data, 'selected', sett.$uuid)
+
+        this.data.selected = sett.$uuid
+
         this.add_trash_icon()
     }
 
@@ -396,7 +414,8 @@ export default class DCEvents {
 
     // Lock the scrolling mechanism
     on_scroll_lock(flag) {
-        this.tv.$set(this.data, 'scrollLock', flag)
+       // Vue 2 | this.tv.$set(this.data, 'scrollLock', flag)
+         this.data.scrollLock = flag
     }
 
     // When new object is selected / unselected
@@ -411,11 +430,15 @@ export default class DCEvents {
             })
             this.remove_trash_icon()
         }
-        this.tv.$set(this.data, 'selected', null)
+
+        // Vue 2 | this.tv.$set(this.data, 'selected', null)
+        this.data.selected = null
 
         if (!args.length) return
 
-        this.tv.$set(this.data, 'selected', args[2])
+        // Vue 2 | this.tv.$set(this.data, 'selected', args[2])
+        this.data.selected = args[2]
+        
         this.merge(`${args[2]}.settings`, {
             $selected: true
         })
@@ -449,7 +472,8 @@ export default class DCEvents {
         for (var ov of data) {
             let obj = this.get_one(`${ov.id}`)
             if (obj) {
-                this.tv.$set(obj, 'loading', false)
+                // Vue 2 | this.tv.$set(obj, 'loading', false)
+                obj.loading = false
                 if (!ov.data) continue
                 obj.data = ov.data
             }

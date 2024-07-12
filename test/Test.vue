@@ -153,6 +153,7 @@ body {
         display: none;
     }
 }
+
 .test-btn {
     top: 12px;
     position: absolute;
@@ -161,7 +162,7 @@ body {
 	-moz-border-radius:28px;
 	-webkit-border-radius:28px;
 	border-radius:28px;
-	//border:1px solid #18ab29;
+	/* border:1px solid #18ab29; */
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
