@@ -1,6 +1,6 @@
 
 // Usuful stuff for creating overlays. Include as mixin
-
+import { h } from 'vue'
 import Mouse from '../stuff/mouse.js'
 
 export default {
@@ -130,5 +130,5 @@ export default {
         }
     },
     data() { return { uxs_count: 0, last_ux_id: null } },
-    render(h) { return h() }
+    render() { return h() }
 }

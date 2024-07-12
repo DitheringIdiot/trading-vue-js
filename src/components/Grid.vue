@@ -53,11 +53,19 @@ export default {
                 this._registry[indicator] = i
             })
         })
-        this.$emit('custom-event', {
+
+        // Vue 2 |
+        // this.$emit('custom-event', {
+        //     event: 'register-tools', args: tools
+        // })
+
+        this.emitCustomEvent({
             event: 'register-tools', args: tools
         })
-        this.$on('custom-event', e =>
-            this.on_ux_event(e, 'grid'))
+        
+        // Vue 2 |
+        // this.$on('custom-event', e =>
+        //     this.on_ux_event(e, 'grid'))
     },
     beforeDestroy () {
         if (this.renderer) this.renderer.destroy()
@@ -115,13 +123,23 @@ export default {
         del_layer(layer) {
             this.$nextTick(() => this.renderer.del_layer(layer))
             const grid_id = this.$props.grid_id
-            this.$emit('custom-event', {
+            // Vue 2 | 
+            // this.$emit('custom-event', {
+            //     event: 'remove-shaders',
+            //     args: [grid_id, layer]
+            // })
+            this.emitCustomEvent({
                 event: 'remove-shaders',
                 args: [grid_id, layer]
             })
             // TODO: close all interfaces
-            this.$emit('custom-event', {
-                event: 'remove-layer-meta',
+            // Vue 2 |
+            // this.$emit('custom-event', {
+            //     event: 'remove-layer-meta',
+            //     args: [grid_id, layer]
+            // })
+            this.emitCustomEvent({
+                event: 'remove-layer',
                 args: [grid_id, layer]
             })
             this.remove_all_ux(layer)
@@ -179,7 +197,11 @@ export default {
         },
         emit_ux_event(e) {
             let e_pass = this.on_ux_event(e, 'grid')
-            if (e_pass) this.$emit('custom-event', e)
+            if (e_pass) this.emitCustomEvent(e)
+        },
+        emitCustomEvent(e) {
+            this.$emit('custom-event', e)
+            this.on_ux_event(e, 'grid')
         },
         // Replace the current comp with 'renderer'
         inject_renderer(comp) {
@@ -258,7 +280,7 @@ export default {
                 },
                 'redraw-grid': this.redraw,
                 'layer-meta-props': d => this.$emit('layer-meta-props', d),
-                'custom-event': d => this.$emit('custom-event', d)
+                'custom-event': d => this.emitCustomEvent(d) // this.$emit('custom-event', d)
             },
             keyboard_events: {
                 'register-kb-listener': event => {
