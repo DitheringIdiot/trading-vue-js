@@ -78,9 +78,12 @@ export default {
     watch: {
         log_scale(value) {
             if (this.chart.data.chart) {
-                this.$set(this.chart.data.chart, 'grid', {
+                // Vue 2 | this.$set(this.chart.data.chart, 'grid', {
+                //     logScale: value
+                // })
+                this.chart.data.chart.grid = {
                     logScale: value
-                })
+                }
             }
         }
     }

@@ -49,7 +49,8 @@ export default {
         modify(ux, obj = {}) {
             for (var k in obj) {
                 if (k in ux) {
-                    this.$set(ux, k, obj[k])
+                    // Vue 2 | this.$set(ux, k, obj[k])
+                    uk[k] = obj[k]
                 }
             }
         },

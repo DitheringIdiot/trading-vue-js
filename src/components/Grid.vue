@@ -71,16 +71,16 @@ export default {
         if (this.renderer) this.renderer.destroy()
     },
     mounted() {
+        
         const el = this.$refs['canvas']
         this.renderer = new Grid(el, this)
         this.setup()
         this.$nextTick(() => this.redraw())
-
     },
     render() {
         const id = this.$props.grid_id
         const layout = this.$props.layout.grids[id]
-        return this.create_canvas(h, `grid-${id}`, {
+        return this.create_canvas(`grid-${id}`, {
             position: {
                 x: 0,
                 y: layout.offset || 0

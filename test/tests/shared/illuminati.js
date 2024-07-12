@@ -35,7 +35,8 @@ export default {
             if (auto) {
                 setInterval(() => {
                     let i = ov.data.indexOf(obj)
-                    this.$set(ov.data[i], 0, t)
+                    // Vue 2 | this.$set(ov.data[i], 0, t)
+                    ov.data[i][0] = t
                     t += tS
                     if (t >= tN || t < t0) tS =- tS
                 }, 20)
@@ -46,11 +47,13 @@ export default {
                     switch (key) {
                         case 'ARROWLEFT':
                             t -= tS
-                            this.$set(ov.data[i], 0, t)
+                            // Vue 2 | this.$set(ov.data[i], 0, t)
+                            ov.data[i][0] = t
                             break
                         case 'ARROWRIGHT':
                             t += tS
-                            this.$set(ov.data[i], 0, t)
+                            // Vue 2 | this.$set(ov.data[i], 0, t)
+                            ov.data[i][0] = t
                             break
                     }
                 }, true)

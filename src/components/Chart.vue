@@ -112,7 +112,8 @@ export default {
         set_ytransform(s) {
             let obj = this.y_transforms[s.grid_id] || {}
             Object.assign(obj, s)
-            this.$set(this.y_transforms, s.grid_id, obj)
+            // Vue 2 | this.$set(this.y_transforms, s.grid_id, obj)
+            this.y_transforms[s.grid_id] = obj
             this.update_layout()
             Utils.overwrite(this.range, this.range)
         },
@@ -206,17 +207,21 @@ export default {
         layer_meta_props(d) {
             // TODO: check reactivity when layout is changed
             if (!(d.grid_id in this.layers_meta)) {
-                this.$set(this.layers_meta, d.grid_id, {})
+                // Vue 2 | this.$set(this.layers_meta, d.grid_id, {})
+                this.layers_meta[d.grid_id] = {}
+
             }
-            this.$set(this.layers_meta[d.grid_id],
-                d.layer_id, d)
+            // Vue 2 | this.$set(this.layers_meta[d.grid_id],
+            //     d.layer_id, d)
+            this.layers_meta[d.grid_id][d.layer_id] = d
 
             // Rerender
             this.update_layout()
         },
         remove_meta_props(grid_id, layer_id) {
             if (grid_id in this.layers_meta) {
-                this.$delete(this.layers_meta[grid_id],layer_id)
+                // Vue 2 | this.$delete(this.layers_meta[grid_id],layer_id)
+                delete this.layers_meta[grid_id][layer_id]
             }
         },
         emit_custom_event(d) {

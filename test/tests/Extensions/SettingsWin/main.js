@@ -24,12 +24,19 @@ export default class Main {
                     let f = Object.values(this.widgets)
                         .find(x => x.data.ov === ov)
                     if(f) {
-                        this.tv.$delete(this.widgets, f.id)
+                        // Vue 2 | this.tv.$delete(this.widgets, f.id)
+                        delete this.widgets[f.id]
                         break
                     }
-                    this.tv.$set(this.widgets, id, {
-                        id, cls: SettingsWin, data: { ov: ov }
-                    })
+                    // Vue 2 | this.tv.$set(this.widgets, id, {
+                    //     id, cls: SettingsWin, data: { ov: ov }
+                    // })
+                    this.widgets[id] = {
+                        id,
+                        cls: SettingsWin,
+                        data: { ov: ov }
+                    }
+                    
                 } catch(e) {
                     console.log(e)
                 }
@@ -38,7 +45,8 @@ export default class Main {
     }
 
     remove_widget(id) {
-        this.tv.$delete(this.widgets, id)
+        // Vue 2 | this.tv.$delete(this.widgets, id)
+        delete this.widgets[id]
     }
 
 }

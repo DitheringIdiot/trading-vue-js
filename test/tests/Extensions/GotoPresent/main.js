@@ -19,11 +19,16 @@ export default class Main {
         let id = `Button-${Utils.uuid2()}`
 
         // Create a new widget instance
-        this.tv.$set(this.widgets, id, {
+        // Vue 2 | this.tv.$set(this.widgets, id, {
+        //     id: id,
+        //     cls: Button,
+        //     data: {}
+        // })
+        this.widgets[id] = {
             id: id,
             cls: Button,
             data: {}
-        })
+        }
 
         this.bus = Main.bus()
     }

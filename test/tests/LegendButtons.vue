@@ -32,13 +32,16 @@ export default {
                 let d = this.chart[event.type][event.dataIndex]
                 if (d) {
                     if (!('display' in d.settings)) {
-                        this.$set(
-                            d.settings, 'display', true
-                        )
+                        // Vue 2 | this.$set(
+                        //     d.settings, 'display', true
+                        // )
+                        d.settings.display = true
                     }
-                    this.$set(
-                        d.settings, 'display', !d.settings.display
-                    )
+
+                    // Vue 2 | this.$set(
+                    //     d.settings, 'display', !d.settings.display
+                    // )
+                    d.settings.display = !d.settings.display
                 }
             }
             console.log(event)

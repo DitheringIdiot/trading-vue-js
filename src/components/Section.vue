@@ -64,7 +64,8 @@ export default {
             this.$emit('sidebar-transform', s)
         },
         emit_meta_props(d) {
-            this.$set(this.meta_props, d.layer_id, d)
+            // Vue 2 | this.$set(this.meta_props, d.layer_id, d)
+            this.meta_props[d.layer_id] = d
             this.$emit('layer-meta-props', d)
         },
         emit_custom_event(d) {
