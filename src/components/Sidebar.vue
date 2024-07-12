@@ -17,7 +17,7 @@ export default {
     mounted() {
         const el = this.$refs['canvas']
         this.renderer = new Sidebar(el, this)
-        this.setup()
+        this.setupCanvas()
         this.redraw()
     },
     render() {
@@ -28,14 +28,10 @@ export default {
                 x: layout.width,
                 y: layout.offset || 0
             },
-            attrs: {
-                rerender: this.$props.rerender,
-                width: this.$props.width,
-                height: layout.height,
-            },
-            style: {
-                backgroundColor: this.$props.colors.back
-            },
+            rerender: this.$props.rerender,
+            width: this.$props.width,
+            height: layout.height,
+            style: [{ backgroundColor: this.$props.colors.back }],
         })
     },
     watch: {

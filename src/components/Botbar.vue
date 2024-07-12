@@ -16,7 +16,7 @@ export default {
     mounted() {
         const el = this.$refs['canvas']
         this.renderer = new Botbar(el, this)
-        this.setup()
+        this.setupCanvas()
         this.redraw()
     },
     render() {
@@ -26,14 +26,10 @@ export default {
                 x: 0,
                 y: sett.offset || 0
             },
-            attrs: {
-                rerender: this.$props.rerender,
-                width: sett.width,
-                height: sett.height,
-            },
-            style: {
-                backgroundColor: this.$props.colors.back
-            },
+            rerender: this.$props.rerender,
+            width: sett.width,
+            height: sett.height,
+            style: [{backgroundColor: this.$props.colors.back}],
         })
     },
     computed: {

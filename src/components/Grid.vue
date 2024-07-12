@@ -74,25 +74,23 @@ export default {
         
         const el = this.$refs['canvas']
         this.renderer = new Grid(el, this)
-        this.setup()
+        this.setupCanvas()
         this.$nextTick(() => this.redraw())
     },
     render() {
         const id = this.$props.grid_id
         const layout = this.$props.layout.grids[id]
-        return this.create_canvas(`grid-${id}`, {
+        return this.create_canvas(h, `grid-${id}`, {
             position: {
                 x: 0,
                 y: layout.offset || 0
             },
-            attrs: {
-                width: layout.width,
-                height: layout.height,
-                overflow: 'hidden'
-            },
-            style: {
-                backgroundColor: this.$props.colors.back
-            },
+            width: layout.width,
+            height: layout.height,
+            overflow: 'hidden',
+            style: [
+                {backgroundColor: this.$props.colors.back},
+            ],
             hs: [
                 h(Crosshair, {
                     props: this.common_props(),

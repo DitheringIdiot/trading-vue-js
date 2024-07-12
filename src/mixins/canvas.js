@@ -5,13 +5,13 @@ import Utils from '../stuff/utils.js'
 
 export default {
     methods: {
-        setup() {
+        setupCanvas() {
             const id = `${this.$props.tv_id}-${this._id}-canvas`
             console.log(id)
             const canvas = document.getElementById(id)
             let dpr = window.devicePixelRatio || 1
-            canvas.style.width = `${this._attrs.width}px`
-            canvas.style.height = `${this._attrs.height}px`
+            canvas.style.width = `${this._width}px`
+            canvas.style.height = `${this._height}px`
             if (dpr < 1) dpr = 1 // Realy ? That's it? Issue #63
             this.$nextTick(() => {
                 var rect = canvas.getBoundingClientRect()
@@ -36,7 +36,10 @@ export default {
         },
         create_canvas(h, id, props) {
             this._id = id
-            this._attrs = props.attrs
+            this._width = props.width
+            this._height = props.height
+            this._overflow = props.overflow
+            // this.rerender = props.rerender 
             return h('div', {
                 class: `trading-vue-${id}`,
                 style: {
@@ -52,10 +55,10 @@ export default {
                         mouseup: e => this.renderer.mouseup(e),
                         mousedown: e => this.renderer.mousedown(e)
                     },
-                    
-                    attrs: Object.assign({
-                        id: `${this.$props.tv_id}-${id}-canvas`
-                    }, props.attrs),
+                    height: props.height,
+                    width: props.width,
+                    overflow: props.overflow,
+                    id: `${this.$props.tv_id}-${id}-canvas`,
                     ref: 'canvas',
                     style: props.style,
                 })
@@ -68,12 +71,12 @@ export default {
     },
     watch: {
         width(val) {
-            this._attrs.width = val
-            this.setup()
+            this._width = val
+            this.setupCanvas()
         },
         height(val) {
-            this._attrs.height = val
-            this.setup()
+            this._height = val
+            this.setupCanvas()
         }
     }
 }
