@@ -18,7 +18,7 @@ export default {
             keypress: this.keypress
         })
     },
-    beforeDestroy: function () {
+    beforeUnmount: function () {
         this.$emit('remove-kb-listener', {
             id: this._uid
         })

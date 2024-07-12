@@ -106,7 +106,7 @@ export default {
             }
         },
     },
-    beforeDestroy() {
+    beforeUnmount() {
         window.removeEventListener('resize', this.onResize)
         document.body.removeChild(this.stats.domElement)
         this.scrolling_test(false)

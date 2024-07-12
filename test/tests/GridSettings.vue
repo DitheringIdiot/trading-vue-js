@@ -30,7 +30,7 @@ export default {
         this.onResize()
         window.tv = this.$refs.tv
     },
-    beforeDestroy() {
+    beforeUnmount() {
         window.removeEventListener('resize', this.onResize)
     },
     computed: {

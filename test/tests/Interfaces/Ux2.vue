@@ -12,7 +12,7 @@ export default {
     created() {
         this.overlay.mouse.on('mousemove', this.mousemove)
     },
-    beforeDestroy() {
+    beforeUnmount() {
         this.overlay.mouse.off('mousemove', this.mousemove)
     },
     computed: {

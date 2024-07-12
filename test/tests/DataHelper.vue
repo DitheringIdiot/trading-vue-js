@@ -125,7 +125,7 @@ export default {
             })
         }
     },
-    beforeDestroy() {
+    beforeUnmount() {
         window.removeEventListener('resize', this.onResize)
         if (this.stream) this.stream.off()
     },

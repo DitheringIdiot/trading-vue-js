@@ -46,7 +46,7 @@ export default {
             }
         },
     },
-    beforeDestroy() {
+    beforeUnmount() {
         window.removeEventListener('resize', this.onResize)
     },
     data() {

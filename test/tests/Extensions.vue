@@ -47,7 +47,7 @@ export default {
             return this.$props.night ? 'NightSkin' : 'DaySkin'
         }
     },
-    beforeDestroy() {
+    beforeUnmount() {
         window.removeEventListener('resize', this.onResize)
     },
     data() {
