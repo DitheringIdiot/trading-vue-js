@@ -21,7 +21,7 @@
             </a>
         </div>
         <div id="test-container">
-            <component v-bind:is="current_test"
+            <component :is="current_test"
                 :night="night">
             </component>
         </div>

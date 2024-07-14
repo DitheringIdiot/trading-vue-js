@@ -9,7 +9,8 @@
             :data="map[id].data"
             :tv="tv"
             :dc="dc"
-            v-bind:is="initw(id)">
+            :is="initw(id)"
+            >
         </component>
     </div>
 </template>

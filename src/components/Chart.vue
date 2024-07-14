@@ -18,8 +18,11 @@
             v-on:legend-button-click="legend_button_click"
             >
         </GridSection>
-        <Botbar v-bind="botbar_props"
-            :shaders="shaders" :timezone="timezone">
+        <Botbar 
+            v-bind="botbar_props"
+            :shaders="shaders" 
+            :timezone="timezone"
+            >
         </Botbar>
     </div>
 </template>

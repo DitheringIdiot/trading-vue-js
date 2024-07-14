@@ -21,8 +21,8 @@
              v-on:rezoom-range="rezoom_range">
         </Grid>
         <Sidebar
-            :ref="'sb-' + grid_id"
             v-bind="sidebar_props"
+            :ref="'sb-' + grid_id"
             v-bind:grid_id="grid_id"
             v-bind:rerender="rerender"
             v-on:sidebar-transform="sidebar_transform">

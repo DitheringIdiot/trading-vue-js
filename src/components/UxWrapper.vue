@@ -15,10 +15,11 @@
     :id="`tvjs-ux-wrapper-${ux.uuid}`"
     :style="style">
     <component
+        v-bind:is="ux.component"
         @custom-event="on_custom_event"
         :ux="ux" :updater="updater" :wrapper="wrapper"
         :colors="colors"
-        v-bind:is="ux.component"></component>
+        ></component>
     <div v-if="ux.show_pin"
         :style="pin_style"
         class="tvjs-ux-wrapper-pin">

@@ -11,8 +11,8 @@
             }">
         <Toolbar v-if="toolbar"
             ref="toolbar"
-            v-on:custom-event="custom_event"
             v-bind="chart_props"
+            v-on:custom-event="custom_event"
             v-bind:config="chart_config">
         </Toolbar>
         <Widgets v-if="controllers.length"
