@@ -1,15 +1,15 @@
 <template>
     <!-- Horizontal section: (grid + sidebar) -->
     <div class="trading-vue-section">
-        <chart-legend ref="legend"
+        <ChartLegend ref="legend"
             v-bind:values="section_values"
             v-bind:grid_id="grid_id"
             v-bind:common="legend_props"
             v-bind:meta_props="get_meta_props"
             v-on:legend-button-click="button_click">
-        </chart-legend>
-        <grid v-bind="grid_props" ref="grid"
-            v-bind:grid_id="grid_id"
+        </ChartLegend>
+        <Grid v-bind="grid_props" ref="grid"
+             v-bind:grid_id="grid_id"
              v-on:register-kb-listener="register_kb"
              v-on:remove-kb-listener="remove_kb"
              v-on:range-changed="range_changed"
@@ -19,14 +19,14 @@
              v-on:custom-event="emit_custom_event"
              v-on:sidebar-transform="sidebar_transform"
              v-on:rezoom-range="rezoom_range">
-        </grid>
-        <sidebar
+        </Grid>
+        <Sidebar
             :ref="'sb-' + grid_id"
             v-bind="sidebar_props"
             v-bind:grid_id="grid_id"
             v-bind:rerender="rerender"
             v-on:sidebar-transform="sidebar_transform">
-        </sidebar>
+        </Sidebar>
     </div>
 </template>
 
@@ -40,6 +40,12 @@ import Shaders from '../mixins/shaders.js'
 export default {
     name: 'GridSection',
     props: ['common', 'grid_id'],
+    emits: [
+        'range-changed', 'cursor-changed', 'cursor-locked',
+        'sidebar-transform', 'layer-meta-props', 'custom-event',
+        'legend-button-click', 'register-kb-listener',
+        'remove-kb-listener', 'rezoom-range'
+    ],
     mixins: [Shaders],
     components: {
         Grid,

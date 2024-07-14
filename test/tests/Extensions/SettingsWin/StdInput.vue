@@ -55,7 +55,7 @@ select.std-input {
 }
 
 select.std-input  {
-    //display: none; /*hide original SELECT element: */
+    /* display: none; /*hide original SELECT element: */
 }
 
 

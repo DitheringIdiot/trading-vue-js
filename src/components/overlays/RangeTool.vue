@@ -10,6 +10,7 @@ import Seg from '../primitives/seg.js'
 export default {
     name: 'RangeTool',
     mixins: [Overlay, Tool],
+    emits: ['drawing-mode-off', 'custom-event'],
     methods: {
         meta_info() {
             return { author: 'C451', version: '2.0.1' }

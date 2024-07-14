@@ -3,14 +3,14 @@
 
 <template>
 <span :class="`trading-vue-grid-ux-${id}`" :style="style">
-    <ux-wrapper v-for="ux of uxs"
+    <UxWrapper v-for="ux of uxs"
         @custom-event="on_custom_event"
         :key="ux.uuid"
         :ux="ux"
         :updater="updater"
         :colors="colors"
         :config="config">
-    </ux-wrapper>
+    </UxWrapper>
 </span>
 </template>
 
@@ -21,6 +21,7 @@ import UxWrapper from './UxWrapper.vue'
 export default {
     name: 'UxLayer',
     props: ['tv_id', 'id', 'uxs', 'updater', 'colors', 'config'],
+    emits: ['custom-event'],
     components: { UxWrapper },
     created () {
     },

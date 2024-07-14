@@ -13,6 +13,7 @@ import Ray from '../primitives/ray.js'
 export default {
     name: 'LineTool',
     mixins: [Overlay, Tool],
+    emits: ['drawing-mode-off'],
     methods: {
         meta_info() {
             return { author: 'C451', version: '1.1.0' }

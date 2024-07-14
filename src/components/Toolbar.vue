@@ -26,6 +26,7 @@ export default {
     props: [
         'data', 'height', 'colors', 'tv_id', 'config'
     ],
+    emits: ['custom-event'],
     components: { ToolbarItem },
     mounted() {
     },

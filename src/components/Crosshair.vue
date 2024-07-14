@@ -8,6 +8,7 @@ import { h } from 'vue'
 export default {
     name: 'Crosshair',
     props: [ 'cursor', 'colors', 'layout', 'sub' ],
+    emits: [ 'new-grid-layer', 'redraw-grid' ],
     methods: {
         create() {
             this.ch = new Crosshair(this)

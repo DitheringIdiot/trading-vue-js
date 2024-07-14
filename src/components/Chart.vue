@@ -1,8 +1,9 @@
 <template>
     <!-- Chart components combined together -->
     <div class="trading-vue-chart" :style="styles">
-        <keyboard ref="keyboard"></keyboard>
-        <grid-section v-for="(grid, i) in this._layout.grids"
+        <Keyboard ref="keyboard"></Keyboard>
+        
+        <GridSection v-for="(grid, i) in this._layout.grids"
             :key="grid.id" ref="sec"
             v-bind:common="section_props(i)"
             v-bind:grid_id="i"
@@ -16,10 +17,10 @@
             v-on:custom-event="emit_custom_event"
             v-on:legend-button-click="legend_button_click"
             >
-        </grid-section>
-        <botbar v-bind="botbar_props"
+        </GridSection>
+        <Botbar v-bind="botbar_props"
             :shaders="shaders" :timezone="timezone">
-        </botbar>
+        </Botbar>
     </div>
 </template>
 
@@ -45,6 +46,7 @@ export default {
         'overlays', 'tv_id', 'config', 'buttons', 'toolbar', 'ib',
         'skin', 'timezone'
     ],
+    emits: ['range-changed', 'legend-button-click', 'custom-event'],
     mixins: [Shaders, DataTrack],
     components: {
         GridSection,

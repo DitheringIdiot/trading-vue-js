@@ -9,6 +9,7 @@ import { h } from 'vue'
 
 export default {
     name: 'KeyboardListener',
+    emits: ['register-kb-listener', 'remove-kb-listener', 'keydown', 'keyup', 'keypress'],
     render() { return h() },
     created: function () {
         this.$emit('register-kb-listener', {

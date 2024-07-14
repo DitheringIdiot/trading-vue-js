@@ -4,22 +4,23 @@
     <div class="trading-vue" v-bind:id="id"
         @mousedown="mousedown" @mouseleave="mouseleave"
          :style="{
-            color: this.chart_props.colors.text,
-            font: this.font_comp,
-            width: this.width+'px',
-            height: this.height+'px'}">
-        <toolbar v-if="toolbar"
+            color: chart_props.colors.text,
+            font: font_comp,
+            width: width+'px',
+            height: height+'px'
+            }">
+        <Toolbar v-if="toolbar"
             ref="toolbar"
             v-on:custom-event="custom_event"
             v-bind="chart_props"
             v-bind:config="chart_config">
-        </toolbar>
-        <widgets v-if="controllers.length"
+        </Toolbar>
+        <Widgets v-if="controllers.length"
             ref="widgets"
             :map="ws" :width="width" :height="height"
             :tv="this" :dc="data">
-        </widgets>
-        <chart :key="reset"
+        </Widgets>
+        <Chart :key="reset"
             ref="chart"
             v-bind="chart_props"
             v-bind:tv_id="id"
@@ -27,11 +28,11 @@
             v-on:custom-event="custom_event"
             v-on:range-changed="range_changed"
             v-on:legend-button-click="legend_button">
-        </chart>
-        <transition name="tvjs-drift">
-            <the-tip :data="tip" v-if="tip"
+        </Chart>
+        <Transition name="tvjs-drift">
+            <TheTip :data="tip" v-if="tip"
                 @remove-me="tip = null"/>
-        </transition>
+        </Transition>
     </div>
 </template>
 

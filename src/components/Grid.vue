@@ -30,6 +30,7 @@ export default {
         'width', 'height', 'data', 'grid_id', 'y_transform', 'font', 'tv_id',
         'config', 'meta', 'shaders'
     ],
+    emits: ['custom-event', 'register-kb-listener', 'remove-kb-listener', 'layer-meta-props'],
     mixins: [Canvas, UxList],
     components: { Crosshair, KeyboardListener },
     created() {
@@ -63,7 +64,7 @@ export default {
             event: 'register-tools', args: tools
         })
         
-        // Vue 2 |
+        // Vue 2 | This has been moved to a function
         // this.$on('custom-event', e =>
         //     this.on_ux_event(e, 'grid'))
     },
@@ -75,7 +76,7 @@ export default {
         const el = this.$refs['canvas']
         this.renderer = new Grid(el, this)
         this.setupCanvas()
-        this.$nextTick(() => this.redraw())
+        nextTick(() => this.redraw())
     },
     render() {
         const id = this.$props.grid_id
@@ -93,23 +94,19 @@ export default {
             ],
             hs: [
                 h(Crosshair, {
-                    props: this.common_props(),
-                    on: this.layer_events
+                    ...this.common_props(),
+                    ...this.layer_events
                 }),
                 h(KeyboardListener, {
-                    on: this.keyboard_events
+                    ...this.keyboard_events
                 }),
                 h(UxLayer, {
-                    props: {
-                        id, tv_id: this.$props.tv_id,
-                        uxs: this.uxs,
-                        colors: this.$props.colors,
-                        config: this.$props.config,
-                        updater: Math.random()
-                    },
-                    on: {
-                        'custom-event': this.emit_ux_event
-                    }
+                    id, tv_id: this.$props.tv_id,
+                    uxs: this.uxs,
+                    colors: this.$props.colors,
+                    config: this.$props.config,
+                    updater: Math.random(),
+                    onCustomEvent: this.emit_ux_event
                 })
             ].concat(this.get_overlays(h))
         })
@@ -166,19 +163,33 @@ export default {
                 }
             }
             return comp_list.map((x, i) => h(x.cls, {
-                    on: this.layer_events,
-                    attrs: Object.assign(this.common_props(), {
-                        id: `${x.type}_${count[x.type]++}`,
-                        type: x.type,
-                        data: x.data,
-                        settings: x.settings,
-                        i0: x.i0,
-                        tf: x.tf,
-                        num: i,
-                        grid_id: this.$props.grid_id,
-                        meta: this.$props.meta,
-                        last: x.last
-                    })
+                    // Vue 2 |
+                    // on: this.layer_events,
+                    // attrs: Object.assign(this.common_props(), {
+                    //     id: `${x.type}_${count[x.type]++}`,
+                    //     type: x.type,
+                    //     data: x.data,
+                    //     settings: x.settings,
+                    //     i0: x.i0,
+                    //     tf: x.tf,
+                    //     num: i,
+                    //     grid_id: this.$props.grid_id,
+                    //     meta: this.$props.meta,
+                    //     last: x.last
+                    // })
+                    ...this.layer_events,
+                    ...this.common_props(),
+                    id: `${x.type}_${count[x.type]++}`,
+                    type: x.type,
+                    data: x.data,
+                    settings: x.settings,
+                    i0: x.i0,
+                    tf: x.tf,
+                    num: i,
+                    grid_id: this.$props.grid_id,
+                    meta: this.$props.meta,
+                    last: x.last
+                    
                 })
             )
         },
@@ -270,35 +281,63 @@ export default {
     data() {
         return {
             layer_events: {
-                'new-grid-layer': this.new_layer,
-                'delete-grid-layer': this.del_layer,
-                'show-grid-layer': d => {
+                // Vue 2 | below are the vue 2 events and rewritten are the vue 3 events
+                // 'new-grid-layer': this.new_layer,
+                onNewGridLayer: this.new_layer,
+                // 'delete-grid-layer': this.del_layer,
+                onDeleteGridLayer: this.del_layer,
+                // 'show-grid-layer': d => {
+                //     this.renderer.show_hide_layer(d)
+                //     this.redraw()
+                // },
+                onShowGridLayer: d => {
                     this.renderer.show_hide_layer(d)
                     this.redraw()
                 },
-                'redraw-grid': this.redraw,
-                'layer-meta-props': d => this.$emit('layer-meta-props', d),
-                'custom-event': d => this.emitCustomEvent(d) // this.$emit('custom-event', d)
+                // 'redraw-grid': this.redraw,
+                onRedrawGrid: this.redraw,
+                // 'layer-meta-props': d => this.$emit('layer-meta-props', d),
+                onLayerMetaProps: d => this.$emit('layer-meta-props', d),
+                // 'custom-event': d => this.emitCustomEvent(d) // this.$emit('custom-event', d)
+                onCustomEvent: d => this.emitCustomEvent(d)
             },
             keyboard_events: {
-                'register-kb-listener': event => {
+                // 'register-kb-listener': event => {
+                //     this.$emit('register-kb-listener', event)
+                // },
+                onRegisterKbListener: event => {
                     this.$emit('register-kb-listener', event)
                 },
-                'remove-kb-listener': event => {
+                // 'remove-kb-listener': event => {
+                //     this.$emit('remove-kb-listener', event)
+                // },
+                onRemoveKbListener: event => {
                     this.$emit('remove-kb-listener', event)
                 },
-                'keyup': event => {
+                // 'keyup': event => {
+                //     if (!this.is_active) return
+                //     this.renderer.propagate('keyup', event)
+                // },
+                onKeyup: event => {
                     if (!this.is_active) return
                     this.renderer.propagate('keyup', event)
                 },
-                'keydown': event => {
-                    if (!this.is_active) return // TODO: is this neeeded?
+                // 'keydown': event => {
+                //     if (!this.is_active) return // TODO: is this neeeded?
+                //     this.renderer.propagate('keydown', event)
+                // },
+                onKeydown: event => {
+                    if (!this.is_active) return
                     this.renderer.propagate('keydown', event)
                 },
-                'keypress': event => {
+                // 'keypress': event => {
+                //     if (!this.is_active) return
+                //     this.renderer.propagate('keypress', event)
+                // },
+                onKeypress: event => {
                     if (!this.is_active) return
                     this.renderer.propagate('keypress', event)
-                },
+                }
             }
         }
     }

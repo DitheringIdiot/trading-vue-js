@@ -40,6 +40,7 @@ import Utils from '../stuff/utils.js'
 export default {
     name: 'UxWrapper',
     props: ['ux', 'updater', 'colors', 'config'],
+    emits: ['custom-event'],
     mounted() {
         this.self = document.getElementById(this.uuid)
         this.w = this.self.offsetWidth // TODO: => width: "content"

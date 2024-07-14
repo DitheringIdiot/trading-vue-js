@@ -34,6 +34,7 @@ export default {
     props: [
         'data', 'selected', 'colors', 'tv_id', 'config', 'dc', 'subs'
     ],
+    emits: ['item-selected'],
     components: { ItemList },
     mounted() {
         if (this.data.group) {

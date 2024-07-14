@@ -21,6 +21,7 @@ import LegendButton from './LegendButton.vue'
 
 export default {
     name: 'ButtonGroup',
+    emits: ['legend-button-click'],
     props: [
         'buttons', 'tv_id', 'ov_id', 'grid_id', 'index',
         'display', 'config'

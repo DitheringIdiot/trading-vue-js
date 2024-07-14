@@ -7,7 +7,6 @@ export default {
     methods: {
         setupCanvas() {
             const id = `${this.$props.tv_id}-${this._id}-canvas`
-            console.log(id)
             const canvas = document.getElementById(id)
             let dpr = window.devicePixelRatio || 1
             canvas.style.width = `${this._width}px`
@@ -49,12 +48,10 @@ export default {
                 }
             }, [
                 h('canvas', {
-                    on: {
-                        mousemove: e => this.renderer.mousemove(e),
-                        mouseout: e => this.renderer.mouseout(e),
-                        mouseup: e => this.renderer.mouseup(e),
-                        mousedown: e => this.renderer.mousedown(e)
-                    },
+                    onMousemove: e => this.renderer.mousemove(e),
+                    onMouseout: e => this.renderer.mouseout(e),
+                    onMouseup: e => this.renderer.mouseup(e),
+                    onMousedown: e => this.renderer.mousedown(e),
                     height: props.height,
                     width: props.width,
                     overflow: props.overflow,
