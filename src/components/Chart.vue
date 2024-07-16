@@ -49,7 +49,7 @@ export default {
         'overlays', 'tv_id', 'config', 'buttons', 'toolbar', 'ib',
         'skin', 'timezone'
     ],
-    emits: ['range-changed', 'legend-button-click', 'custom-event'],
+    emits: ['range-changed', 'legend-button-click', 'custom-event', 'cursor-changed'],
     mixins: [Shaders, DataTrack],
     components: {
         GridSection,

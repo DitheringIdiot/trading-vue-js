@@ -76,7 +76,7 @@ export default {
         const el = this.$refs['canvas']
         this.renderer = new Grid(el, this)
         this.setupCanvas()
-        nextTick(() => this.redraw())
+        this.$nextTick(() => this.redraw())
     },
     render() {
         const id = this.$props.grid_id

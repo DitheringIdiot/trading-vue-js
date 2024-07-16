@@ -1,6 +1,6 @@
 <template>
 <span>
-    <trading-vue :data="chart" :width="this.width" :height="this.height"
+    <TradingVue :data="chart" :width="this.width" :height="this.height"
             ref="tvjs"
             :timezone="parseInt(timezone)"
             :index-based="index_based"
@@ -8,7 +8,7 @@
             :color-back="colors.colorBack"
             :color-grid="colors.colorGrid"
             :color-text="colors.colorText">
-    </trading-vue>
+    </TradingVue>
     <span class="gc-mode">
         <input type="checkbox" v-model="index_based">
         <label>Index Based</label>

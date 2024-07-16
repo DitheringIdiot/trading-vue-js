@@ -41,6 +41,6 @@ export default {
             deep: true
         }
     },
-    render() { return h() }
+    render() { return '' }
 }
 </script>

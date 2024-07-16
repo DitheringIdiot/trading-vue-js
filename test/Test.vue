@@ -45,7 +45,9 @@ import Performance from './tests/Performance.vue'
 import Renko from './tests/Renko.vue'
 import Scripts from './tests/Scripts.vue'
 import Extensions from './tests/Extensions.vue'
-import Datasets from './tests/Datasets.vue'
+import Datasets from './tests/Datasets.vue';
+
+
 
 const TESTS = {
     Simple, Stocks, Timeframes, Multichart,
