@@ -72,8 +72,9 @@ export default {
         if (this.renderer) this.renderer.destroy()
     },
     mounted() {
-        
         const el = this.$refs['canvas']
+        // Overlays components are added a list
+        this.overlay_components = this.get_overlays()
         this.renderer = new Grid(el, this)
         this.setupCanvas()
         this.$nextTick(() => this.redraw())
@@ -108,7 +109,7 @@ export default {
                     updater: Math.random(),
                     onCustomEvent: this.emit_ux_event
                 })
-            ].concat(this.get_overlays(h))
+            ].concat(this.overlay_components)
         })
     },
     methods: {
@@ -139,7 +140,7 @@ export default {
             })
             this.remove_all_ux(layer)
         },
-        get_overlays(h) {
+        get_overlays() {
             // Distributes overlay data & settings according
             // to this._registry; returns compo list
             let comp_list = [], count = {}
@@ -257,7 +258,7 @@ export default {
             // Track changes in calc() functions
             handler: function(ovs) {
                 for (var ov of ovs) {
-                    for (var comp of this.$children) {
+                    for (var comp of this.overlay_components) {
                         if (typeof comp.id !== 'string') continue
                         let tuple = comp.id.split('_')
                         tuple.pop()
@@ -280,6 +281,7 @@ export default {
     },
     data() {
         return {
+            overlay_components:[],
             layer_events: {
                 // Vue 2 | below are the vue 2 events and rewritten are the vue 3 events
                 // 'new-grid-layer': this.new_layer,
