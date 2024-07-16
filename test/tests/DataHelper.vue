@@ -1,7 +1,7 @@
 <template>
 <!-- Real time data example -->
 <span>
-    <trading-vue :data="chart" :width="this.width" :height="this.height"
+    <TradingVue :data="chart" :width="this.width" :height="this.height"
             :chart-config="{MIN_ZOOM:1}"
             ref="tvjs"
             :toolbar="true"
@@ -10,7 +10,7 @@
             :color-back="colors.colorBack"
             :color-grid="colors.colorGrid"
             :color-text="colors.colorText">
-    </trading-vue>
+    </TradingVue>
     <span class="gc-mode">
         <input type="checkbox" v-model="index_based">
         <label>Index Based</label>

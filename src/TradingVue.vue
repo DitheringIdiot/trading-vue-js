@@ -45,6 +45,8 @@ import Widgets from './components/Widgets.vue'
 import TheTip from './components/TheTip.vue'
 import XControl from './mixins/xcontrol.js'
 
+import { toRaw } from 'vue'
+
 export default {
     name: 'TradingVue',
     components: {

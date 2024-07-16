@@ -11110,9 +11110,9 @@ var WebWork = /*#__PURE__*/function () {
         var tx_objs = tx_keys.map(function (k) {
           return msg.data[k];
         });
-        this.worker.postMessage(msg, tx_objs);
+        this.worker.postMessage(toRaw(msg), tx_objs);
       } else {
-        this.worker.postMessage(msg);
+        this.worker.postMessage(toRaw(msg));
       }
     } // Send to node.js via websocket
 

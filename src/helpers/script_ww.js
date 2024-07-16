@@ -5,6 +5,7 @@ import se from './script_engine.js'
 import Utils from '../stuff/utils.js'
 import * as u from './script_utils.js'
 import { DatasetWW } from './dataset.js'
+import { deepToRaw } from './deep_toRaw.js'
 
 var data_requested = false
 
@@ -26,7 +27,7 @@ self.onmessage = async e => {
             if (req && !data_requested) {
                 data_requested = true
                 self.postMessage({
-                    type: 'request-data', data: req
+                    type: 'request-data', data: deepToRaw(req)
                 })
             }
             se.tf = u.tf_from_str(e.data.data.tf)
@@ -42,7 +43,7 @@ self.onmessage = async e => {
             if (req && !data_requested) {
                 data_requested = true
                 self.postMessage({
-                    type: 'request-data', data: req
+                    type: 'request-data', data: deepToRaw(req)
                 })
             }
 
@@ -98,7 +99,7 @@ self.onmessage = async e => {
 
             self.postMessage({
                 id: e.data.id,
-                data: se.data[e.data.data]
+                data: deepToRaw(se.data[e.data.data])
             })
 
             break
@@ -152,7 +153,7 @@ se.send = (type, data) => {
         case 'module-data':
         case 'script-signal':
 
-            self.postMessage({type, data})
+            self.postMessage({type, data:deepToRaw(data)})
 
             break
 

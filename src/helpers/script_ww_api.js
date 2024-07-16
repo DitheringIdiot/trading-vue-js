@@ -6,6 +6,7 @@ import worker_data from './tmp/ww$$$.json'
 import Utils from '../stuff/utils.js'
 import lz from 'lz-string'
 import {} from './script_ww.js' // For webworker-loader to find the ww
+import { deepToRaw } from './deep_toRaw.js'
 
 class WebWork {
 
@@ -52,9 +53,9 @@ class WebWork {
         }
         if (tx_keys) {
             let tx_objs = tx_keys.map(k => msg.data[k])
-            this.worker.postMessage(msg, tx_objs)
+            this.worker.postMessage(deepToRaw(msg), tx_objs)
         } else {
-            this.worker.postMessage(msg)
+            this.worker.postMessage(deepToRaw(msg))
         }
     }
 
