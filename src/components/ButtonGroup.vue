@@ -1,6 +1,6 @@
 <template>
 <span class="t-vue-lbtn-grp">
-    <legend-button
+    <LegendButton
         v-for="(b, i) in buttons" :key="i"
         :id="b.name || b"
         :tv_id="tv_id"
@@ -12,7 +12,7 @@
         :config="config"
         v-on:legend-button-click="button_click"
     >
-    </legend-button>
+    </LegendButton>
 </span>
 </template>
 <script>

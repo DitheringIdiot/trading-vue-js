@@ -20,7 +20,8 @@
         <ItemList :config="config" :items="data.items"
             v-if="show_exp_list" :colors="colors" :dc="dc"
             @close-list="close_list"
-            @item-selected="emit_selected_sub"/>
+            @item-selected="emit_selected_sub"
+            />
     </div>
 </template>
 

@@ -5,6 +5,12 @@ import Keys from '../stuff/keys.js'
 import Utils from '../stuff/utils.js'
 
 export default {
+    emits:[
+        'object-selected',
+        'remove-tool',
+        'change-settings',
+        'scroll-lock'
+    ],
     methods: {
         init_tool() {
             // Collision functions (float, float) => bool,

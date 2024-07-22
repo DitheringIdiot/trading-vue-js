@@ -9,6 +9,17 @@ export default {
         'layout', 'sub', 'data', 'settings', 'grid_id',
         'font', 'config', 'meta', 'tf', 'i0', 'last'
     ],
+    emits:[
+        'new-grid-layer',
+        'layer-meta-props',
+        'delete-grid-layer',
+        'custom-event',
+        'exec-script',
+        'show-grid-layer',
+        'register-tools',
+        'new-shader',
+        'cursor-changed'
+    ],
     mounted() {
         // TODO(1): when hot reloading, dynamicaly changed mixins
         // dissapear (cuz it's a hack), the only way for now
@@ -134,5 +145,5 @@ export default {
         }
     },
     data() { return { uxs_count: 0, last_ux_id: null } },
-    render() { return '' }
+    render() { return null }
 }

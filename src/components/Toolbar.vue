@@ -1,6 +1,7 @@
 
 <template>
-    <div class="trading-vue-toolbar" :style="styles"
+    <div class="trading-vue-toolbar" 
+        :style="styles"
         :key="tool_count">
         <template v-for="(tool, i) in groups" :key="i">
             <ToolbarItem
@@ -28,8 +29,7 @@ export default {
     ],
     emits: ['custom-event'],
     components: { ToolbarItem },
-    mounted() {
-    },
+    mounted() {},
     methods: {
         selected(tool) {
             this.$emit('custom-event', {

@@ -22,7 +22,7 @@
     </div>
     <div class="t-vue-ind" v-for="ind in this.indicators">
         <span class="t-vue-iname">{{ind.name}}</span>
-        <button-group
+        <ButtonGroup
             v-bind:buttons="common.buttons"
             v-bind:config="common.config"
             v-bind:ov_id="ind.id"
@@ -31,7 +31,7 @@
             v-bind:tv_id="common.tv_id"
             v-bind:display="ind.v"
             v-on:legend-button-click="button_click">
-        </button-group>
+        </ButtonGroup>
         <span class="t-vue-ivalues" v-if="ind.v">
             <span class="t-vue-lspan t-vue-ivalue"
                 v-if="show_values"
@@ -42,10 +42,9 @@
         <span v-if="ind.unk" class="t-vue-unknown">
             (Unknown type)
         </span>
-        <transition name="tvjs-appear">
-            <spinner :colors="common.colors" v-if="ind.loading">
-            </spinner>
-        </transition>
+        <Transition name="tvjs-appear">
+            <Spinner :colors="common.colors" v-if="ind.loading" />
+        </Transition>
     </div>
 </div>
 </template>

@@ -10,7 +10,11 @@ if (MOB_DEBUG) {
 }
 
 const app = createApp(App)
+
+
+
 app.mount('#app')
+
 
 function debug(...argv) {
     fetch('/debug?argv=' + JSON.stringify(argv))

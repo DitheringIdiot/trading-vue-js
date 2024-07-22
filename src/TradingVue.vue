@@ -45,13 +45,20 @@ import Widgets from './components/Widgets.vue'
 import TheTip from './components/TheTip.vue'
 import XControl from './mixins/xcontrol.js'
 
-import { toRaw } from 'vue'
-
 export default {
     name: 'TradingVue',
     components: {
         Chart, Toolbar, Widgets, TheTip
     },
+    emits: [
+        'before-destroy', 'chart-reset',
+        'range-changed', 'legend-button-click',
+        'cursor-changed', 'register-tools',
+        'data-len-changed', 'new-shader',
+        'cursor-changed', 'grid-mousedown',
+        'remove-layer', 'remove-shaders',
+        'cursor-locked'
+    ],
     mixins: [ XControl ],
     props: {
         titleTxt: {
@@ -192,6 +199,7 @@ export default {
         chart_props() {
             let offset = this.$props.toolbar ?
                 this.chart_config.TOOLBAR : 0
+                
             let chart_props = {
                 title_txt: this.$props.titleTxt,
                 overlays: this.$props.overlays.concat(this.mod_ovs),

@@ -5,6 +5,7 @@
 
 export default {
     props: ['ux', 'updater', 'colors', 'wrapper'],
+    emits: ['custom-event'],
     mounted() {
         this._$emit = this.$emit
         this.$emit = this.custom_event

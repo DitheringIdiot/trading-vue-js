@@ -24,6 +24,7 @@
 <script>
 import TradingVue from '../../src/TradingVue.vue'
 import Data from '../data/data_earn.json'
+import { markRaw } from 'vue'
 //import Data from '../data/data_aapl_1h.json'
 //import Data from '../data/data_fresh.json'
 //import Data from '../data/data_fresh_1D.json'
@@ -70,7 +71,7 @@ export default {
             chart: new DataCube(Data),
             width: window.innerWidth,
             height: window.innerHeight,
-            overlays: [Earnings, Eye],
+            overlays: [markRaw(Earnings), Eye],
             index_based: true,
             timezone: 0
         };

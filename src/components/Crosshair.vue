@@ -41,6 +41,6 @@ export default {
             deep: true
         }
     },
-    render() { return '' }
+    render() { return null }
 }
 </script>

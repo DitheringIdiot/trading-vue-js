@@ -47,7 +47,7 @@ import Scripts from './tests/Scripts.vue'
 import Extensions from './tests/Extensions.vue'
 import Datasets from './tests/Datasets.vue';
 
-
+import { markRaw } from 'vue'
 
 const TESTS = {
     Simple, Stocks, Timeframes, Multichart,
@@ -64,7 +64,8 @@ export default {
         index = (index === index) ? index - 1 : 0
         let list = Object.values(TESTS)
         if (!list[index]) index = 0
-        this.current_test = list[index]
+        // Using markRaw to avoid unnecessary reactivity of vue component
+        this.current_test = markRaw(list[index])
         this.test_index = index
     },
     data() {

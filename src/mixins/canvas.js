@@ -4,6 +4,7 @@
 import Utils from '../stuff/utils.js'
 
 export default {
+    emits:['cursor-changed'],
     methods: {
         setupCanvas() {
             const id = `${this.$props.tv_id}-${this._id}-canvas`

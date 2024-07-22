@@ -3,6 +3,9 @@
 import Utils from '../stuff/utils.js'
 
 export default {
+    emits:[
+        'custom-event'
+    ],
     methods: {
         data_changed() {
             let n = this.ohlcv

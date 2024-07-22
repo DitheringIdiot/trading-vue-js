@@ -30,7 +30,7 @@ export default {
         'width', 'height', 'data', 'grid_id', 'y_transform', 'font', 'tv_id',
         'config', 'meta', 'shaders'
     ],
-    emits: ['custom-event', 'register-kb-listener', 'remove-kb-listener', 'layer-meta-props'],
+    emits: ['custom-event', 'register-kb-listener', 'remove-kb-listener', 'layer-meta-props', 'register-tools', 'cursor-locked', 'range-changed'],
     mixins: [Canvas, UxList],
     components: { Crosshair, KeyboardListener },
     created() {
@@ -54,6 +54,8 @@ export default {
                 this._registry[indicator] = i
             })
         })
+
+        console.log('grid.vue tools', tools)
 
         // Vue 2 |
         // this.$emit('custom-event', {

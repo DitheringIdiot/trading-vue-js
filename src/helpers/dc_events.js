@@ -178,8 +178,9 @@ export default class DCEvents {
         // Vue 2 |
         // this.tv.$set(this.data, 'tools', list)
         // this.tv.$set(this.data, 'tool', 'Cursor')
-        this.tv.tools = list
-        this.tv.tool = 'Cursor'
+        this.data.tools = list;
+        this.data.tool = 'Cursor';
+    
     }
 
     exec_script(args) {

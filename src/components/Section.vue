@@ -44,7 +44,8 @@ export default {
         'range-changed', 'cursor-changed', 'cursor-locked',
         'sidebar-transform', 'layer-meta-props', 'custom-event',
         'legend-button-click', 'register-kb-listener',
-        'remove-kb-listener', 'rezoom-range'
+        'remove-kb-listener', 'rezoom-range',
+        'cursor-locked'
     ],
     mixins: [Shaders],
     components: {
