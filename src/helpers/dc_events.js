@@ -66,11 +66,14 @@ export default class DCEvents {
                 break
             case 'tool-selected':
                 if (!args[0]) break // TODO: Quick fix, investigate
+
                 if (args[0].split(':')[0] === 'System') {
                     this.system_tool(args[0].split(':')[1])
                     break
                 }
-                this.tv.$set(this.data, 'tool', args[0])
+                // Vue 2 | this.tv.$set(this.data, 'tool', args[0])
+                this.data.tool = args[0]
+
                 if (args[0] === 'Cursor') {
                     this.drawing_mode_off()
                 }
@@ -147,13 +150,13 @@ export default class DCEvents {
 
     // Combine all tools and their mods
     register_tools(tools) {
+
         let preset = {}
         for (var tool of this.data.tools || []) {
-             preset[tool.type] = tool
+             preset[tool.type] = tool 
              delete tool.type
         }
-        // Vue 3 | this.tv.$set(this.data, 'tools', [])
-        // Vue 2 | this.data.tools = []
+        // Vue 2 | this.tv.$set(this.data, 'tools', [])
         this.data.tools = []
         let list = [{
             type: 'Cursor', icon: Icons['cursor.png']
@@ -323,6 +326,7 @@ export default class DCEvents {
     grid_mousedown(args) {
         // TODO: tool state finished?
         this.object_selected([])
+
         // Remove the previous RangeTool
         let rem = () => this.get('RangeTool')
             .filter(x => x.settings.shiftMode)

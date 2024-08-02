@@ -2,7 +2,6 @@
 
 import Crosshair from './js/crosshair.js'
 import Utils from '../stuff/utils.js'
-import { h } from 'vue'
 
 
 export default {

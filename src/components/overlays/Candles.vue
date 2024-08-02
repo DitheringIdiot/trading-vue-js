@@ -16,6 +16,7 @@ export default {
             return { author: 'C451', version: '1.2.1' }
         },
         init() {
+            console.log('Candles mounted')
             this.price = new Price(this)
         },
         draw(ctx) {

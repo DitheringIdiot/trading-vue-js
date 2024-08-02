@@ -2,14 +2,18 @@
 <template>
     <div class="tvjs-item-list" :style="list_style()"
         @mousedown="thismousedown">
-        <div v-for="item of items" :class="item_class(item)"
-            v-if="!item.hidden" @click="e => item_click(e, item)"
-                :style="item_style(item)">
+        <template v-for="item of items">
+            <div v-if="!item.hidden" 
+             :class="item_class(item)"
+             @click="e => item_click(e, item)"
+             :style="item_style(item)"
+            >
             <div class="trading-vue-tbicon tvjs-pixelated"
                 :style="icon_style(item)">
             </div>
             <div>{{item.type}}</div>
         </div>
+        </template>
     </div>
 </template>
 
@@ -80,13 +84,6 @@ export default {
         },
         thismousedown(e) {
             e.stopPropagation()
-        }
-    },
-    computed: {
-    },
-    data() {
-        return {
-
         }
     }
 }

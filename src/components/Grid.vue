@@ -39,6 +39,7 @@ export default {
             Spline, Splines, Range, Trades, Channel, Segment,
             Candles, Volume, Splitters, LineTool, RangeTool
         ]
+
         .concat(this.$props.overlays)
         this._registry = {}
 
@@ -54,8 +55,6 @@ export default {
                 this._registry[indicator] = i
             })
         })
-
-        console.log('grid.vue tools', tools)
 
         // Vue 2 |
         // this.$emit('custom-event', {
@@ -165,6 +164,7 @@ export default {
                     count[d.type] = 0
                 }
             }
+            
             return comp_list.map((x, i) => h(x.cls, {
                     // Vue 2 |
                     // on: this.layer_events,

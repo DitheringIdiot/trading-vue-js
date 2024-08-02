@@ -83,7 +83,7 @@ export default {
             if (--this.test_index < 0) {
                 this.test_index = list.length - 1
             }
-            this.current_test = list[this.test_index]
+            this.current_test = markRaw(list[this.test_index])
         },
         next_test() {
             let list = Object.values(TESTS)
@@ -91,7 +91,7 @@ export default {
             if (++this.test_index >= list.length) {
                 this.test_index = 0
             }
-            this.current_test = list[this.test_index]
+            this.current_test = markRaw(list[this.test_index])
         }
     },
     watch: {

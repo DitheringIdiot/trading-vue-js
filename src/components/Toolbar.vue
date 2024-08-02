@@ -27,7 +27,7 @@ export default {
     props: [
         'data', 'height', 'colors', 'tv_id', 'config'
     ],
-    emits: ['custom-event'],
+    emits: ['custom-event', 'tool-selected'],
     components: { ToolbarItem },
     mounted() {},
     methods: {
@@ -66,12 +66,16 @@ export default {
         },
         groups() {
             let arr = []
+
             for (var tool of this.data.tools || []) {
+                
                 if (!tool.group) {
                     arr.push(tool)
                     continue
                 }
+
                 let g = arr.find(x => x.group === tool.group)
+
                 if (!g) {
                     arr.push({
                         group: tool.group,
@@ -82,6 +86,9 @@ export default {
                     g.items.push(tool)
                 }
             }
+
+            console.log(arr)
+
             return arr
         }
     },

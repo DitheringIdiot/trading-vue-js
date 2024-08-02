@@ -57,7 +57,7 @@ export default {
         'data-len-changed', 'new-shader',
         'cursor-changed', 'grid-mousedown',
         'remove-layer', 'remove-shaders',
-        'cursor-locked'
+        'cursor-locked', 'tool-selected',
     ],
     mixins: [ XControl ],
     props: {

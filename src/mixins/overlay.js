@@ -2,6 +2,7 @@
 // Usuful stuff for creating overlays. Include as mixin
 // import { h } from 'vue'
 import Mouse from '../stuff/mouse.js'
+import { toRaw } from 'vue'
 
 export default {
     props: [
@@ -24,6 +25,7 @@ export default {
         // TODO(1): when hot reloading, dynamicaly changed mixins
         // dissapear (cuz it's a hack), the only way for now
         // is to reload the browser
+
         if (!this.draw) {
             this.draw = ctx => {
                 let text = 'EARLY ADOPTER BUG: reload the browser & enjoy'
@@ -66,6 +68,7 @@ export default {
             data_colors: this.data_colors,
             y_range: this.y_range
         })
+
         this.exec_script()
         this.mouse = new Mouse(this)
         if (this.init_tool) this.init_tool()
